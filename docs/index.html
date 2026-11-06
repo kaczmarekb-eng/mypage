@@ -1,11 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>rclone app</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google Search Console ownership verification: paste the tag from Search Console here, e.g.
+  <meta name="google-site-verification" content="YOUR_TOKEN_FROM_SEARCH_CONSOLE">
+  -->
+  <title>rclone – sync and back up your files with Google Drive</title>
+  <meta name="description" content="rclone is a command-line application that lets you sync, copy and back up files between your computer and your own Google Drive.">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>this site is about rclone app</h1>
+
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="./">rclone</a>
+    <nav>
+      <a href="./" aria-current="page">Home</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Service</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="inner">
+    <h1>rclone</h1>
+    <p class="lead">
+      rclone is a command-line application that lets you sync, copy and back up
+      files between your computer and <strong>your own Google Drive</strong>.
+    </p>
+    <a class="button" href="#how-it-works">How it works</a>
+    <a class="button secondary" href="privacy.html">Privacy Policy</a>
+    <a class="button secondary" href="terms.html">Terms of Service</a>
+  </div>
+</section>
+
+<main>
+
+  <h2 id="about">What is rclone?</h2>
+  <p>
+    <strong>rclone</strong> is the name of this application: a Google OAuth client that connects the
+    open-source <a href="https://rclone.org" rel="noopener">rclone</a> command-line program
+    to the Google Drive API. It is maintained and operated by an independent developer
+    (GitHub: <a href="https://github.com/kaczmarekb-eng" rel="noopener">kaczmarekb-eng</a>).
+  </p>
+  <p>
+    The application runs entirely on the user's own computer. It has no web interface,
+    no user accounts and no servers of its own &ndash; this website is purely informational and
+    is available to everyone without signing in.
+  </p>
+
+  <div class="notice">
+    This application is not affiliated with, endorsed by, or sponsored by Google LLC or by
+    the authors of the open-source rclone project. "Google Drive" is a trademark of Google LLC.
+  </div>
+
+  <h2 id="purpose">Purpose of the application</h2>
+  <p>
+    The purpose of rclone is to let a user manage <em>their own</em> files stored in Google Drive
+    from the command line. With rclone the user can:
+  </p>
+  <div class="features">
+    <div class="feature">
+      <h3>Back up</h3>
+      <p>Copy local folders to Google Drive to keep a safe off-site backup.</p>
+    </div>
+    <div class="feature">
+      <h3>Sync</h3>
+      <p>Keep a local directory and a Google Drive folder identical, in either direction.</p>
+    </div>
+    <div class="feature">
+      <h3>Download &amp; restore</h3>
+      <p>Download files and folders from Google Drive back to the computer.</p>
+    </div>
+    <div class="feature">
+      <h3>List &amp; check</h3>
+      <p>List files, check sizes and compare checksums to verify that backups are complete.</p>
+    </div>
+  </div>
+  <p>
+    rclone only performs the operations that the user explicitly starts with a command
+    (for example <code>rclone copy</code>, <code>rclone sync</code> or <code>rclone ls</code>).
+    It never runs in the background on its own and never accesses Google Drive on behalf of anyone else.
+  </p>
+
+  <h2 id="how-it-works">How it works</h2>
+  <ol class="steps">
+    <li>The user installs rclone on their computer and runs <code>rclone config</code> to add a Google Drive remote.</li>
+    <li>rclone opens Google's sign-in page in the browser. The user signs in with their Google account and
+        reviews the permissions requested on Google's consent screen.</li>
+    <li>After the user grants consent, Google returns an OAuth access token and refresh token. They are saved
+        <strong>only on the user's computer</strong>, in the local rclone configuration file.</li>
+    <li>When the user runs a command, rclone talks directly to the Google Drive API over HTTPS.
+        File contents and metadata travel only between the user's computer and Google &ndash;
+        they are never sent to the developer or to any third party.</li>
+  </ol>
+
+  <h2 id="google-data">How rclone uses Google user data</h2>
+  <p>
+    rclone requests access to Google Drive only so that it can carry out the file operations
+    the user asks for (listing, uploading, downloading, moving and deleting the user's own files).
+    Google user data is:
+  </p>
+  <ul>
+    <li>used <strong>only</strong> to provide the file-transfer features described above;</li>
+    <li><strong>not</strong> collected, stored or viewed by the developer &ndash; there is no backend server;</li>
+    <li><strong>not</strong> sold, shared with third parties, or used for advertising;</li>
+    <li><strong>not</strong> used to train artificial intelligence or machine-learning models.</li>
+  </ul>
+  <div class="highlight">
+    rclone's use and transfer to any other app of information received from Google APIs will adhere to the
+    <a href="https://developers.google.com/terms/api-services-user-data-policy" rel="noopener">Google API Services User Data Policy</a>,
+    including the Limited Use requirements.
+  </div>
+  <p>
+    Full details are in the <a href="privacy.html">Privacy Policy</a>.
+  </p>
+
+  <h2 id="revoke">Revoking access</h2>
+  <p>
+    You can revoke rclone's access to your Google account at any time on the
+    <a href="https://myaccount.google.com/permissions" rel="noopener">Google Account &ndash; Third-party apps &amp; services</a>
+    page. To also remove the locally stored tokens, delete the remote with
+    <code>rclone config delete &lt;remote-name&gt;</code> or delete the rclone configuration file.
+  </p>
+
+  <h2 id="legal">Legal</h2>
+  <ul>
+    <li><a href="privacy.html">Privacy Policy</a></li>
+    <li><a href="terms.html">Terms of Service</a></li>
+  </ul>
+
+  <h2 id="contact">Contact</h2>
+  <p>
+    Questions about rclone or about this website can be submitted via
+    <a href="https://github.com/kaczmarekb-eng/mypage/issues" rel="noopener">GitHub Issues</a>.
+  </p>
+
+</main>
+
+<footer class="site-footer">
+  <div class="inner">
+    <span>&copy; 2026 rclone</span>
+    <span>
+      <a href="./">Home</a> &middot;
+      <a href="privacy.html">Privacy Policy</a> &middot;
+      <a href="terms.html">Terms of Service</a>
+    </span>
+  </div>
+</footer>
+
 </body>
 </html>
